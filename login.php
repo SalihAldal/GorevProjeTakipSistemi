@@ -3,6 +3,7 @@ session_start();
 require_once 'includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['user_id'];
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
@@ -11,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
 
@@ -46,6 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     <p class="info-text">Görev ve Proje Takip Sistemine Hoş Geldiniz Giriş Yapmak İçin Size Tahsis Edilen Kullanıcı Adınızı Ve Şifrenizi Giriniz</p>
 </div>
-
+<script>
+    localStorage.setItem("id", "<?= $_SESSION['user_id'] ?>");
+    localStorage.setItem("username", "<?= $_SESSION['username'] ?>");
+    localStorage.setItem("role", "<?= $_SESSION['role'] ?>");
+</script>
 </body>
 </html>

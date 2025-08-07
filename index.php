@@ -48,6 +48,11 @@ include "includes/header.php";
 
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script>
+    localStorage.setItem("id", "<?= $_SESSION['user_id'] ?>");
+    localStorage.setItem("username", "<?= $_SESSION['username'] ?>");
+    localStorage.setItem("role", "<?= $_SESSION['role'] ?>");
+</script>
+<script>
     const ctx = document.getElementById('chart').getContext('2d');
     const chart = new Chart(ctx, {
         type: 'line',
