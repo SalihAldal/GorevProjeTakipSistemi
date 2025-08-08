@@ -26,6 +26,7 @@ $rol = $_SESSION['role'];
 
         .dropdownn {
             position: relative;
+            margin-right: 20px;
         }
 
         .dropdownn img {
@@ -94,20 +95,25 @@ $rol = $_SESSION['role'];
 <body>
 
 <div class="topbar">
-    <span class="menu-btn" onclick="toggleSidebar()">&#9776;</span>
+    <span class="menu-btn" onclick="toggleSidebar()"></span>
 
     <div class="profile">
         <a href="messages.php" style="text-decoration: none; color: black">
             <i class="fa fa-bell"></i>
         </a>
 
+        <?php
+        $profilResmi = !empty($_SESSION['pp']) ? $_SESSION['pp'] : 'uploads/profile/default.png';
+        ?>
         <div class="dropdownn">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="profil" width="40" onclick="Dropdown()">
+            <img src="<?= htmlspecialchars($profilResmi) ?>" alt="profil" width="40" height="40" onclick="Dropdown()">
             <div id="dropdownMenuu" class="dropdownn-menu">
                 <span class="username">👋 <?= htmlspecialchars($kullanici_adi) ?></span>
+                <a href="profile_upload.php">📷 Fotoğraf Değiştir</a>
                 <a href="cikis.php" class="logout-btn">🔓 Çıkış Yap</a>
             </div>
         </div>
+
     </div>
 </div>
 
